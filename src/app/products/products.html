@@ -1,0 +1,210 @@
+```html
+<div class="products-page">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <div>
+      <h1>Products</h1>
+      <p>Manage your products and inventory information</p>
+    </div>
+
+    <button class="add-btn">
+      + Add Product
+    </button>
+  </div>
+
+  <!-- Search Section -->
+  <div class="search-card">
+    <div class="search-box">
+
+      <input
+        type="text"
+        placeholder="Search products..."
+        [(ngModel)]="searchText"
+        (keyup.enter)="searchProducts()"
+      >
+
+      <select [(ngModel)]="searchBy">
+        <option value="name">Search by Name</option>
+        <option value="sku">Search by SKU</option>
+        <option value="category">Search by Category</option>
+        <option value="barcode">Search by Barcode</option>
+      </select>
+
+      <button
+        class="search-btn"
+        (click)="searchProducts()"
+      >
+        Search
+      </button>
+
+    </div>
+  </div>
+
+  <!-- Product Table -->
+  <div class="product-card">
+
+    <div class="table-header">
+      <div>
+        <h2>Product List</h2>
+        <p>All products available in StockSmart</p>
+      </div>
+
+      <span class="product-count">
+        {{ filteredProducts.length }} Products
+      </span>
+    </div>
+
+    <div class="table-container">
+      <table>
+
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Product</th>
+          <th>Category</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>SKU</th>
+          <th>Barcode</th>
+          <th>Actions</th>
+        </tr>
+        </thead>
+
+        <tbody>
+
+        <tr *ngIf="loading">
+          <td colspan="8">Loading products...</td>
+        </tr>
+
+        <tr *ngIf="!loading && errorMessage">
+          <td colspan="8">{{ errorMessage }}</td>
+        </tr>
+
+        <tr *ngIf="!loading && !errorMessage && filteredProducts.length === 0">
+          <td colspan="8">No matching products found.</td>
+        </tr>
+
+        <tr *ngFor="let product of filteredProducts">
+          <td>{{ product.id }}</td>
+
+          <td>
+            <strong>{{ product.name }}</strong>
+          </td>
+
+          <td>
+              <span class="category">
+                {{ product.category || '-' }}
+              </span>
+          </td>
+
+          <td>
+            {{ product.price | currency:'INR':'symbol':'1.0-2' }}
+          </td>
+
+          <td>
+            <span class="stock">{{ product.quantity }}</span>
+          </td>
+
+          <td>{{ product.sku || '-' }}</td>
+
+          <td>{{ product.barcode || '-' }}</td>
+
+          <td class="actions">
+            <button
+              class="edit-btn"
+              (click)="editProduct(product)"
+            >
+              Edit
+            </button>
+
+            <button class="delete-btn">
+              Delete
+            </button>
+          </td>
+        </tr>
+
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+
+  <!-- Edit Product Form -->
+  <div class="product-card" *ngIf="editingProduct">
+
+    <div class="table-header">
+      <div>
+        <h2>Edit Product</h2>
+        <p>Update the selected product's information</p>
+      </div>
+    </div>
+
+    <div class="search-box">
+      <label>
+        Product Name
+        <input
+          type="text"
+          [(ngModel)]="editingProduct.name"
+          placeholder="Product name"
+        >
+      </label>
+
+      <label>
+        Price
+        <input
+          type="number"
+          [(ngModel)]="editingProduct.price"
+          placeholder="Price"
+        >
+      </label>
+
+      <label>
+        Quantity
+        <input
+          type="number"
+          [(ngModel)]="editingProduct.quantity"
+          placeholder="Quantity"
+        >
+      </label>
+
+      <label>
+        Category
+        <input
+          type="text"
+          [(ngModel)]="editingProduct.category"
+          placeholder="Category"
+        >
+      </label>
+
+      <label>
+        SKU
+        <input
+          type="text"
+          [(ngModel)]="editingProduct.sku"
+          placeholder="SKU"
+        >
+      </label>
+
+      <label>
+        Barcode
+        <input
+          type="text"
+          [(ngModel)]="editingProduct.barcode"
+          placeholder="Barcode"
+        >
+      </label>
+
+      <button
+        type="button"
+        class="delete-btn"
+        (click)="editingProduct = null"
+      >
+        Cancel
+      </button>
+    </div>
+
+  </div>
+
+</div>
+```

@@ -1,0 +1,175 @@
+.products-page {
+  padding: 30px;
+  background: #f4f7fb;
+  min-height: calc(100vh - 70px);
+}
+
+/* Header */
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.page-header h1 {
+  font-size: 30px;
+  color: #1e2a3a;
+}
+
+.page-header p {
+  margin-top: 6px;
+  color: #777;
+}
+
+.add-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 7px;
+  background: #1769e0;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+.add-btn:hover {
+  background: #0f57bf;
+}
+
+/* Search */
+
+.search-card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  margin-bottom: 25px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+.search-box {
+  display: flex;
+  gap: 12px;
+}
+
+.search-box input {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.search-box select {
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: white;
+}
+
+.search-btn {
+  padding: 12px 22px;
+  border: none;
+  border-radius: 6px;
+  background: #0f2747;
+  color: white;
+  cursor: pointer;
+}
+
+/* Product Table */
+
+.product-card {
+  background: white;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+}
+
+.table-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.table-header h2 {
+  color: #1e2a3a;
+}
+
+.table-header p {
+  margin-top: 5px;
+  color: #777;
+  font-size: 14px;
+}
+
+.product-count {
+  padding: 8px 14px;
+  background: #e8f0ff;
+  color: #1769e0;
+  border-radius: 20px;
+  font-size: 14px;
+}
+
+.table-container {
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 950px;
+}
+
+th,
+td {
+  padding: 14px;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+th {
+  background: #f8fafc;
+  color: #555;
+  font-size: 14px;
+}
+
+td {
+  color: #333;
+  font-size: 14px;
+}
+
+.category {
+  padding: 5px 10px;
+  background: #eef6ff;
+  color: #1769e0;
+  border-radius: 15px;
+  font-size: 12px;
+}
+
+.stock {
+  font-weight: bold;
+}
+
+.actions {
+  display: flex;
+  gap: 7px;
+}
+
+.edit-btn,
+.delete-btn {
+  border: none;
+  padding: 7px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.edit-btn {
+  background: #e8f5e9;
+  color: #2e7d32;
+}
+
+.delete-btn {
+  background: #ffebee;
+  color: #c62828;
+}
