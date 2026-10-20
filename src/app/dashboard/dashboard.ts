@@ -34,7 +34,7 @@ export class Dashboard implements OnInit {
     console.log('Dashboard component loaded');
 
     this.http
-      .get<Product[]>('http://localhost:8083/products')
+      .get<Product[]>('https://stocksmart-b93f.onrender.com/products')
       .subscribe({
         next: (data) => {
           console.log('Dashboard API products:', data);
