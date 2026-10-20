@@ -1,3 +1,4 @@
+
 * {
   margin: 0;
   padding: 0;
@@ -239,4 +240,15 @@ td {
     gap: 15px;
   }
 
+}
+.menu-item {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+.menu-item.disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
 }

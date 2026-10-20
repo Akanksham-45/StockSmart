@@ -1,183 +1,121 @@
-<div class="app-container">
 
-  <!-- Top Header -->
-  <header class="top-bar">
+<div class="page-heading">
+  <div>
+    <h1>Dashboard</h1>
+    <p>Welcome to StockSmart Inventory Management System</p>
+  </div>
 
-    <div class="logo">
-      <span class="logo-icon">📦</span>
-      <span>StockSmart</span>
+  <button
+    class="add-product-btn"
+    type="button"
+    routerLink="/products">
+    + Add Product
+  </button>
+</div>
+
+<!-- Loading and Error Messages -->
+<p *ngIf="loading">Loading dashboard data...</p>
+
+<p *ngIf="!loading && errorMessage" class="error-message">
+  {{ errorMessage }}
+</p>
+
+<!-- Statistics -->
+<div class="stats-grid" *ngIf="!loading && !errorMessage">
+
+  <div class="stat-card">
+    <div class="stat-icon">📦</div>
+    <div>
+      <p>Total Products</p>
+      <h2>{{ totalProducts }}</h2>
     </div>
+  </div>
 
-    <div class="user-section">
-      <span>Admin</span>
-      <span class="user-icon">👤</span>
+  <div class="stat-card">
+    <div class="stat-icon">📊</div>
+    <div>
+      <p>Total Stock</p>
+      <h2>{{ totalStock }}</h2>
     </div>
+  </div>
 
-  </header>
+  <div class="stat-card">
+    <div class="stat-icon">📍</div>
+    <div>
+      <p>Locations</p>
+      <h2>2</h2>
+    </div>
+  </div>
 
+  <div class="stat-card">
+    <div class="stat-icon">⚠️</div>
+    <div>
+      <p>Low Stock</p>
+      <h2>{{ lowStockCount }}</h2>
+    </div>
+    <small>Products with quantity 5 or less</small>
+  </div>
 
-  <div class="main-layout">
+</div>
 
-    <!-- Sidebar -->
-    <aside class="sidebar">
+<!-- Recent Products -->
+<div class="section-card">
 
-      <div class="menu-title">MAIN MENU</div>
+  <div class="section-header">
+    <h2>Recent Products</h2>
 
-      <div class="menu-item active">
-        <span>🏠</span>
-        <span>Dashboard</span>
-      </div>
+    <button
+      class="view-btn"
+      type="button"
+      routerLink="/products">
+      View All
+    </button>
+  </div>
 
-      <div class="menu-item">
-        <span>📦</span>
-        <span>Products</span>
-      </div>
+  <div class="table-container">
+    <table>
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Product Name</th>
+        <th>Category</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>SKU</th>
+      </tr>
+      </thead>
 
-      <div class="menu-item">
-        <span>📍</span>
-        <span>Locations</span>
-      </div>
+      <tbody>
+      <tr *ngIf="loading">
+        <td colspan="6">Loading products...</td>
+      </tr>
 
-      <div class="menu-item">
-        <span>📊</span>
-        <span>Inventory</span>
-      </div>
+      <tr *ngIf="!loading && errorMessage">
+        <td colspan="6">Unable to load products.</td>
+      </tr>
 
-      <div class="menu-item">
-        <span>🚚</span>
-        <span>Suppliers</span>
-      </div>
+      <tr *ngIf="!loading && !errorMessage && products.length === 0">
+        <td colspan="6">No products found.</td>
+      </tr>
 
-      <div class="menu-item">
-        <span>🛒</span>
-        <span>Orders</span>
-      </div>
+      <tr *ngFor="let product of products">
+        <td>{{ product.id }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.category || '-' }}</td>
+        <td>{{ product.price | currency:'INR':'symbol':'1.0-2' }}</td>
+        <td>
+            <span [class.low-stock]="product.quantity <= 5">
+              {{ product.quantity }}
+            </span>
 
-    </aside>
-
-
-    <!-- Main Content -->
-    <main class="content">
-
-      <!-- Heading -->
-      <div class="page-heading">
-
-        <div>
-          <h1>Dashboard</h1>
-          <p>Welcome to StockSmart Inventory Management System</p>
-        </div>
-
-        <button class="add-product-btn">
-          + Add Product
-        </button>
-
-      </div>
-
-
-      <!-- Statistics -->
-      <div class="stats-grid">
-
-        <div class="stat-card">
-          <div class="stat-icon">📦</div>
-
-          <div>
-            <p>Total Products</p>
-            <h2>3</h2>
-          </div>
-        </div>
-
-
-        <div class="stat-card">
-          <div class="stat-icon">📊</div>
-
-          <div>
-            <p>Total Stock</p>
-            <h2>30</h2>
-          </div>
-        </div>
-
-
-        <div class="stat-card">
-          <div class="stat-icon">📍</div>
-
-          <div>
-            <p>Locations</p>
-            <h2>2</h2>
-          </div>
-        </div>
-
-
-        <div class="stat-card">
-          <div class="stat-icon">⚠️</div>
-
-          <div>
-            <p>Low Stock</p>
-            <h2>0</h2>
-          </div>
-        </div>
-
-      </div>
-
-
-      <!-- Products Table -->
-      <div class="section-card">
-
-        <div class="section-header">
-
-          <h2>Recent Products</h2>
-
-          <button class="view-btn">
-            View All
-          </button>
-
-        </div>
-
-
-        <table>
-
-          <thead>
-
-          <tr>
-            <th>ID</th>
-            <th>Product Name</th>
-            <th>Category</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>SKU</th>
-          </tr>
-
-          </thead>
-
-
-          <tbody>
-
-          <tr>
-            <td>3</td>
-            <td>Mouse</td>
-            <td>Electronics</td>
-            <td>₹800</td>
-            <td>20</td>
-            <td>MOU-001</td>
-          </tr>
-
-
-          <tr>
-            <td>1</td>
-            <td>Laptop</td>
-            <td>Electronics</td>
-            <td>₹55,000</td>
-            <td>10</td>
-            <td>LAP-001</td>
-          </tr>
-
-          </tbody>
-
-        </table>
-
-      </div>
-
-    </main>
-
+          <span *ngIf="product.quantity <= 5" class="low-stock-label">
+              Low Stock
+            </span>
+        </td>
+        <td>{{ product.sku || '-' }}</td>
+      </tr>
+      </tbody>
+    </table>
   </div>
 
 </div>

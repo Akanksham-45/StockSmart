@@ -1,0 +1,51 @@
+
+<div class="app-container">
+  <header class="top-bar">
+    <div class="logo">
+      <span class="logo-icon">📦</span>
+      <span>StockSmart</span>
+    </div>
+
+    <div class="user-section">
+      <span>Admin</span>
+      <span class="user-icon">👤</span>
+    </div>
+  </header>
+
+  <div class="main-layout">
+    <aside class="sidebar">
+      <div class="menu-title">MAIN MENU</div>
+
+      <a class="menu-item"
+         routerLink="/dashboard"
+         routerLinkActive="active"
+         [routerLinkActiveOptions]="{ exact: true }">
+        <span>🏠</span><span>Dashboard</span>
+      </a>
+
+      <a class="menu-item" routerLink="/products" routerLinkActive="active">
+        <span>📦</span><span>Products</span>
+      </a>
+
+      <a class="menu-item" routerLink="/inventory" routerLinkActive="active">
+        <span>📊</span><span>Inventory</span>
+      </a>
+
+      <a class="menu-item" routerLink="/locations" routerLinkActive="active">
+        <span>📍</span><span>Locations</span>
+      </a>
+
+      <a class="menu-item" routerLink="/suppliers" routerLinkActive="active">
+        <span>🚚</span><span>Suppliers</span>
+      </a>
+
+      <a class="menu-item" routerLink="/orders" routerLinkActive="active">
+        <span>🛒</span><span>Orders</span>
+      </a>
+    </aside>
+
+    <main class="content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+</div>

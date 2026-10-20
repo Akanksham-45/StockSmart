@@ -1,0 +1,76 @@
+
+<div class="orders-page">
+  <div class="page-header">
+    <div>
+      <h1>Orders</h1>
+      <p>Track and manage your inventory orders.</p>
+    </div>
+
+    <button class="add-btn" type="button">+ Create Order</button>
+  </div>
+
+  <div class="summary-grid">
+    <div class="summary-card">
+      <p>Total Orders</p>
+      <h2>{{ orders.length }}</h2>
+    </div>
+
+    <div class="summary-card">
+      <p>Delivered</p>
+      <h2>{{ getOrderCount('Delivered') }}</h2>
+    </div>
+
+    <div class="summary-card">
+      <p>Pending</p>
+      <h2>{{ getOrderCount('Pending') }}</h2>
+    </div>
+
+    <div class="summary-card">
+      <p>Processing</p>
+      <h2>{{ getOrderCount('Processing') }}</h2>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <h2>All Orders</h2>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Product</th>
+          <th>Customer</th>
+          <th>Order Date</th>
+          <th>Quantity</th>
+          <th>Amount</th>
+          <th>Status</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let order of orders">
+          <td>#{{ order.id }}</td>
+          <td class="product-name">{{ order.product }}</td>
+          <td>{{ order.customer }}</td>
+          <td>{{ order.date }}</td>
+          <td>{{ order.quantity }}</td>
+          <td>{{ order.amount | currency:'INR':'symbol':'1.0-0' }}</td>
+          <td>
+              <span
+                class="status"
+                [ngClass]="order.status.toLowerCase()"
+              >
+                {{ order.status }}
+              </span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="note">
+      Note: These are sample orders and are not yet connected to the database.
+    </p>
+  </div>
+</div>

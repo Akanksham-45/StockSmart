@@ -1,0 +1,57 @@
+
+<div class="suppliers-page">
+  <div class="page-header">
+    <div>
+      <h1>Suppliers</h1>
+      <p>Manage your suppliers and their contact information.</p>
+    </div>
+
+    <button class="add-btn" type="button">+ Add Supplier</button>
+  </div>
+
+  <div class="summary-card">
+    <div class="summary-icon">🤝</div>
+    <div>
+      <p>Total Suppliers</p>
+      <h2>{{ suppliers.length }}</h2>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <h2>All Suppliers</h2>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Supplier Name</th>
+          <th>Contact Person</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Products</th>
+          <th>Status</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let supplier of suppliers">
+          <td>{{ supplier.id }}</td>
+          <td class="supplier-name">{{ supplier.name }}</td>
+          <td>{{ supplier.contact }}</td>
+          <td>{{ supplier.email }}</td>
+          <td>{{ supplier.phone }}</td>
+          <td>{{ supplier.products }}</td>
+          <td>
+            <span class="status">{{ supplier.status }}</span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="note">
+      Note: These are sample suppliers. They are not yet connected to the database.
+    </p>
+  </div>
+</div>

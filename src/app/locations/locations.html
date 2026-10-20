@@ -1,0 +1,54 @@
+
+<div class="locations-page">
+  <div class="page-header">
+    <div>
+      <h1>Locations</h1>
+      <p>Manage your warehouses and storage locations.</p>
+    </div>
+    <button class="add-btn" type="button">+ Add Location</button>
+  </div>
+
+  <div class="summary-card">
+    <div class="summary-icon">📍</div>
+    <div>
+      <p>Total Locations</p>
+      <h2>{{ locations.length }}</h2>
+    </div>
+  </div>
+
+  <div class="table-card">
+    <h2>All Locations</h2>
+
+    <div class="table-wrapper">
+      <table>
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Location Name</th>
+          <th>Address</th>
+          <th>Manager</th>
+          <th>Products</th>
+          <th>Status</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr *ngFor="let location of locations">
+          <td>{{ location.id }}</td>
+          <td class="location-name">{{ location.name }}</td>
+          <td>{{ location.address }}</td>
+          <td>{{ location.manager }}</td>
+          <td>{{ location.products }}</td>
+          <td>
+            <span class="status">{{ location.status }}</span>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="note">
+      Note: These are sample locations. They are not yet connected to the database.
+    </p>
+  </div>
+</div>
