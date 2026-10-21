@@ -48,7 +48,7 @@ export class Inventory implements OnInit {
     });
   }
   ngOnInit(): void {
-    this.http.get<Product[]>('http://localhost:8083/products').subscribe({
+    this.http.get<Product[]>('https://stocksmart-b93f.onrender.com/products').subscribe({
       next: (data) => {
         console.log('Inventory API products:', data);
         this.products = data;
