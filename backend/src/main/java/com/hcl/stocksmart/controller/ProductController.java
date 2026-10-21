@@ -20,7 +20,7 @@ import com.hcl.stocksmart.service.ProductService;
 @RestController
 @CrossOrigin(origins = {
         "http://localhost:4200",
-        "https://stocksmart-b93f.onrender.com"
+        "https://stocksmart-frontend.onrender.com"
 })
 @RequestMapping("/products")
 public class ProductController {
